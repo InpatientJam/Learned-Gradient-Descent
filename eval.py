@@ -1,6 +1,7 @@
-import hydra
-
+import os
 import glob
+
+import hydra
 import torch
 import pytorch_lightning as pl
 
@@ -26,9 +27,10 @@ def main(opt):
     testset = create_dataset(opt.data.test)
     datamodule = CustomDataModule(testset)
 
-    model = LGDModel.load_from_checkpoint("ckpts/best-model.ckpt", strict=False, opt=opt.model)
+    checkpoints = sorted(glob.glob("ckpts/*.ckpt"), key=os.path.getmtime)
+    print("checkpoints", checkpoints)
+    model = LGDModel.load_from_checkpoint(checkpoints[-1], strict=False, opt=opt.model)
     model.eval()
-
     trainer = pl.Trainer(gpus=1, accelerator="gpu")
     trainer.test(model, datamodule=datamodule)
 
