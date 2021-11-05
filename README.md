@@ -46,9 +46,9 @@ If everything setups properly, the layout of `data/` folder will be something li
 
 ## Training & Evaluation
 ```
-python train.py
-
-# (Optional) Or you can skip training, download the pretrained model from
-#  and extract it to `outputs/` folder
+# Evaluate with sample pretrained model
 python eval.py
+
+# (Optional) train from scratch
+python train.py
 ```
