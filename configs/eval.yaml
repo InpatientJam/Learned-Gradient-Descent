@@ -1,0 +1,20 @@
+exp: "AMASS"
+run: "Baseline"
+
+hydra:
+    run:
+        dir: outputs/${exp}/${run}
+
+project_name: learned_body_fitting
+seed: 1
+
+data:
+    test:
+        name: "3DPW"
+        dataset_path: ./data/3DPW_test.npz
+        batch_size: 1024
+        worker: 20
+        shuffle: false
+        drop_last: false
+model:
+    verbose: false

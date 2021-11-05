@@ -1,0 +1,28 @@
+project_name: "Learned-Gradient-Descent"
+exp: "AMASS"
+run: "Baseline"
+seed: 1
+
+hydra:
+    run:
+        dir: outputs/${exp}/${run}
+
+data:
+    train:
+        name: "AMASS"
+        dataset_path: ./data/AMASS.npz
+        batch_size: 512
+        worker: 20
+        shuffle: true
+        drop_last: true
+        augmentation: true
+    validate:
+        name: "3DPW"
+        dataset_path: ./data/3DPW_valid.npz
+        skip: 10
+        batch_size: 512
+        worker: 20
+        shuffle: false
+        drop_last: true
+model:
+    verbose: true
