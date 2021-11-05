@@ -1,0 +1,5 @@
+pytorch-lightning
+torch
+hydra-core
+opencv-python
+smplx
